@@ -8,6 +8,12 @@
 
 # Body
 
+input_obj = open('words.txt')
+for line in input_obj:
+    word = line.strip()
+    if len(word) > 20:
+        print(word)
+
 
 ##############################################################################
 def main():

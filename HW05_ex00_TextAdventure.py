@@ -3,22 +3,24 @@
 ##############################################################################
 # Imports
 from sys import exit
+from sys import argv
 
 # Body
 
-
+user_name = argv[1]
 def infinite_stairway_room(count=0):
-    print("You walk through the door to see a dimly lit hallway.")
+    print("%s walks through the door to see a dimly lit hallway." % user_name)
     print("At the end of the hallway is a", count * 'long ', 'staircase going towards some light')
     next = input("> ")
     
     # infinite stairs option
     if next == "take stairs":
-        print('You take the stairs')
+        print('%s take the stairs' % user_name)
         if (count > 0):
             print("but you're not happy about it")
         infinite_stairway_room(count + 1)
     # option 2 == ?????
+    option_2 = ""
     if next == option_2:
         pass
 
@@ -36,7 +38,7 @@ def gold_room():
         print("Nice, you're not greedy, you win!")
         exit(0)
     else:
-        dead("You greedy goose!")
+        dead("%s greedy goose!" % user_name)
 
 
 def bear_room():
@@ -49,14 +51,14 @@ def bear_room():
     while True:
         next = input("> ")
 
-        if next == "take honey":
+        if next == "take" or "honey":
             dead("The bear looks at you then slaps your face off.")
-        elif next == "taunt bear" and not bear_moved:
+        elif next == "taunt" and not bear_moved:
             print("The bear has moved from the door. You can go through it now.")
             bear_moved = True
-        elif next == "taunt bear" and bear_moved:
+        elif next == "taunt" and bear_moved:
             dead("The bear gets pissed off and chews your leg off.")
-        elif next == "open door" and bear_moved:
+        elif next == "open" or "door" and bear_moved:
             gold_room()
         else:
             print("I got no idea what that means.")
@@ -70,7 +72,7 @@ def cthulhu_room():
     next = input("> ")
 
     if "flee" in next:
-        start()
+        main()
     elif "head" in next:
         dead("Well that was tasty!")
     else:
@@ -83,11 +85,11 @@ def dead(why):
 
 
 ############################################################################
-def start():
+def main():
     # START the TextAdventure game
-    print("You are in a dark room.")
+    print("%s is in a dark room." % user_name)
     print("There is a door to your right and left.")
-    print("Which one do you take?")
+    print("Which one does %s take?" % user_name)
 
     next = input("> ")
 
@@ -96,7 +98,7 @@ def start():
     elif next == "right":
         cthulhu_room()
     else:
-        dead("You stumble around the room until you starve.")
+        dead("%s stumbles around the room until %s starves." % user_name)
 
 if __name__ == '__main__':
-    start()
+    main()
